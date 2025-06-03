@@ -62,28 +62,57 @@ function createPlayerCard(player, isOnline = true) {
 // Fungsi untuk mendapatkan pemain offline dari Supabase
 async function getOfflinePlayers() {
     try {
-        console.log('Mengambil data pemain dari Supabase...');
-        // Ambil semua pemain yang pernah join, urutkan berdasarkan last_seen
+        console.log('Mengambil data pemain offline dari Supabase...');
         const { data, error } = await supabaseClient
             .from('players')
             .select('*')
-            .eq('is_online', false)  // Langsung filter di query Supabase
+            .eq('is_online', false)
             .order('last_seen', { ascending: false });
 
         if (error) {
-            console.error('Error fetching offline players:', error);
+            console.error('Error mengambil data pemain offline:', error);
             return [];
         }
 
-        console.log('Data mentah dari Supabase:', data);
-        
-        // Pastikan data valid
-        const offlinePlayers = data || [];
-        console.log('Pemain offline:', offlinePlayers);
-        return offlinePlayers;
+        console.log('Data pemain offline:', data);
+        return data || [];
     } catch (error) {
-        console.error('Error fetching offline players:', error);
+        console.error('Error dalam getOfflinePlayers:', error);
         return [];
+    }
+}
+
+// Fungsi untuk memperbarui tampilan pemain offline
+async function updateOfflinePlayersList() {
+    try {
+        const offlinePlayers = await getOfflinePlayers();
+        const offlinePlayersList = document.getElementById('offline-players-list');
+        const totalOfflinePlayers = document.getElementById('total-offline-players');
+
+        // Update total
+        totalOfflinePlayers.textContent = offlinePlayers.length;
+
+        // Bersihkan list yang ada
+        offlinePlayersList.innerHTML = '';
+
+        if (offlinePlayers.length > 0) {
+            // Buat fragment untuk menampung semua kartu pemain
+            const fragment = document.createDocumentFragment();
+            
+            offlinePlayers.forEach(player => {
+                if (player.name && player.name !== 'Unknown') {
+                    const playerCard = createPlayerCard(player, false);
+                    fragment.appendChild(playerCard);
+                }
+            });
+
+            offlinePlayersList.appendChild(fragment);
+        } else {
+            offlinePlayersList.innerHTML = '<p>Belum ada riwayat pemain</p>';
+        }
+    } catch (error) {
+        console.error('Error dalam updateOfflinePlayersList:', error);
+        document.getElementById('offline-players-list').innerHTML = '<p>Gagal memuat riwayat pemain</p>';
     }
 }
 
@@ -234,52 +263,8 @@ async function updateServerStatus() {
         // Update alamat server
         serverIp.textContent = SERVER_ADDRESS;
 
-        // Update daftar pemain offline (selalu dijalankan)
-        try {
-            const offlinePlayers = await getOfflinePlayers();
-            
-            // Perbarui total tanpa mengosongkan list
-            totalOfflinePlayers.textContent = offlinePlayers.length;
-            
-            // Bandingkan dengan pemain offline yang sudah ditampilkan
-            const currentOfflineCards = offlinePlayersList.querySelectorAll('.player-card');
-            const currentOfflineNames = Array.from(currentOfflineCards).map(card => 
-                card.getAttribute('data-player')
-            );
-            
-            // Tambahkan pemain offline baru
-            if (offlinePlayers && offlinePlayers.length > 0) {
-                const newOfflineCards = document.createDocumentFragment();
-                
-                offlinePlayers.forEach(player => {
-                    if (!currentOfflineNames.includes(player.name)) {
-                        const playerCard = createPlayerCard(player, false);
-                        playerCard.setAttribute('data-player', player.name);
-                        newOfflineCards.appendChild(playerCard);
-                    }
-                });
-                
-                // Hapus pemain yang tidak ada di daftar offline
-                currentOfflineCards.forEach(card => {
-                    const playerName = card.getAttribute('data-player');
-                    if (!offlinePlayers.some(p => p.name === playerName)) {
-                        card.remove();
-                    }
-                });
-                
-                // Tambahkan kartu baru jika ada
-                if (newOfflineCards.children.length > 0) {
-                    offlinePlayersList.appendChild(newOfflineCards);
-                }
-            } else if (offlinePlayersList.children.length === 0) {
-                offlinePlayersList.innerHTML = '<p>Belum ada riwayat pemain</p>';
-            }
-        } catch (error) {
-            console.error('Error fetching offline players:', error);
-            if (offlinePlayersList.children.length === 0) {
-                offlinePlayersList.innerHTML = '<p>Belum ada riwayat pemain</p>';
-            }
-        }
+        // Selalu update daftar pemain offline setelah update status
+        await updateOfflinePlayersList();
     }
 }
 
@@ -320,5 +305,5 @@ document.addEventListener('DOMContentLoaded', () => {
     console.log('Document loaded, initializing...');
     // Perbarui status setiap 2 detik
     updateServerStatus();
-    setInterval(updateServerStatus, 2000); // Diubah dari 5000 (5 detik) menjadi 2000 (2 detik)
+    setInterval(updateServerStatus, 2000);
 }); 
