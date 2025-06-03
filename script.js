@@ -283,6 +283,38 @@ async function updateServerStatus() {
     }
 }
 
+// Fungsi untuk menyalin ke clipboard
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        // Tampilkan feedback visual
+        const notification = document.createElement('div');
+        notification.className = 'copy-notification';
+        notification.textContent = 'Alamat server disalin!';
+        document.body.appendChild(notification);
+
+        // Hapus notifikasi setelah 2 detik
+        setTimeout(() => {
+            notification.remove();
+        }, 2000);
+    }).catch(err => {
+        console.error('Gagal menyalin teks: ', err);
+    });
+}
+
+// Tambahkan event listener untuk alamat server
+document.addEventListener('DOMContentLoaded', function() {
+    const javaAddress = document.querySelector('.address-item:nth-child(1)');
+    const bedrockAddress = document.querySelector('.address-item:nth-child(2)');
+
+    javaAddress.addEventListener('click', () => {
+        copyToClipboard('mc.veldoranz.xyz');
+    });
+
+    bedrockAddress.addEventListener('click', () => {
+        copyToClipboard('mc.veldoranz.xyz:19132');
+    });
+});
+
 // Tunggu sampai dokumen selesai dimuat
 document.addEventListener('DOMContentLoaded', () => {
     console.log('Document loaded, initializing...');
