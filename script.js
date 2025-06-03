@@ -11,7 +11,6 @@ const supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 const serverStatus = document.getElementById('server-status');
 const onlinePlayers = document.getElementById('online-players');
 const maxPlayers = document.getElementById('max-players');
-const serverIp = document.getElementById('server-ip');
 const playersList = document.getElementById('players-list');
 const offlinePlayersList = document.getElementById('offline-players-list');
 const totalPlayers = document.getElementById('total-players');
@@ -220,19 +219,14 @@ async function updateServerStatus() {
                 await Promise.all(offlinePromises);
             }
         } else {
-            // Server offline tapi bukan error
             serverStatus.textContent = 'Offline';
             serverStatus.className = 'offline';
             onlinePlayers.textContent = '0';
             maxPlayers.textContent = '0';
             totalPlayers.textContent = '0';
-            
-            // Jangan langsung kosongkan, tapi fade out
-            const existingCards = playersList.querySelectorAll('.player-card');
-            existingCards.forEach(card => card.remove());
             playersList.innerHTML = '<p>Server sedang offline</p>';
             
-            // Set semua pemain sebagai offline secara parallel
+            // Set semua pemain sebagai offline
             const { data: onlinePlayers } = await supabaseClient
                 .from('players')
                 .select('name')
@@ -245,25 +239,16 @@ async function updateServerStatus() {
                 await Promise.all(offlinePromises);
             }
         }
-
     } catch (error) {
         console.error('Error:', error);
-        // Tetap tampilkan sebagai offline, bukan error
         serverStatus.textContent = 'Offline';
         serverStatus.className = 'offline';
         onlinePlayers.textContent = '0';
         maxPlayers.textContent = '0';
         totalPlayers.textContent = '0';
-        
-        // Jangan langsung kosongkan
-        const existingCards = playersList.querySelectorAll('.player-card');
-        existingCards.forEach(card => card.remove());
         playersList.innerHTML = '<p>Server sedang offline</p>';
     } finally {
-        // Update alamat server
-        serverIp.textContent = SERVER_ADDRESS;
-
-        // Selalu update daftar pemain offline setelah update status
+        // Update daftar pemain offline
         await updateOfflinePlayersList();
     }
 }
