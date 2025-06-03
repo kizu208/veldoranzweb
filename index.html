@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Status Server Minecraft</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="server-card">
+            <h1>VeldoranzSMP Status</h1>
+            <div class="server-info">
+                <div class="status">
+                    <h2>Status Server:</h2>
+                    <p id="server-status">Memuat...</p>
+                </div>
+                <div class="players">
+                    <h2>Pemain Online:</h2>
+                    <p><span id="online-players">0</span> / <span id="max-players">0</span></p>
+                </div>
+            </div>
+            <div class="server-address">
+                <h2>Alamat Server</h2>
+                <div class="address-container">
+                    <div class="address-item">
+                        <span class="address-label">Java Edition</span>
+                        <div class="address-value">mc.veldoranz.xyz</div>
+                    </div>
+                    <div class="address-item">
+                        <span class="address-label">Bedrock Edition</span>
+                        <div class="address-value">mc.veldoranz.xyz</div>
+                        <div class="address-value">Port: 19132</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="players-card">
+            <div class="players-header">
+                <h2>Online</h2>
+                <span class="total-players">Total: <span id="total-players">0</span></span>
+            </div>
+            <div class="players-list" id="players-list">
+                <!-- Daftar pemain online akan ditambahkan di sini oleh JavaScript -->
+            </div>
+        </div>
+
+        <div class="players-card offline-players">
+            <div class="players-header">
+                <h2>Riwayat Pemain</h2>
+                <span class="total-players">Total: <span id="total-offline-players">0</span></span>
+            </div>
+            <div class="players-list" id="offline-players-list">
+                <!-- Daftar pemain offline akan ditambahkan di sini oleh JavaScript -->
+            </div>
+        </div>
+
+        <p class="update-text">Halaman diperbarui otomatis setiap 30 detik</p>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="script.js"></script>
+</body>
+</html> 
