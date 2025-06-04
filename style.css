@@ -78,6 +78,21 @@ body {
         color: #7289da;
         letter-spacing: 0.5px;
     }
+
+    .total-players:hover {
+        transform: scale(1.05);
+        background: rgba(74, 222, 128, 0.2);
+    }
+
+    .offline-players .total-players:hover {
+        background: rgba(239, 68, 68, 0.2);
+    }
+
+    .players p:hover {
+        transform: scale(1.02);
+        background: rgba(114, 137, 218, 0.15);
+        box-shadow: 0 0 20px rgba(114, 137, 218, 0.15);
+    }
 }
 
 h1 {
@@ -131,10 +146,61 @@ p {
 
 #server-status.online {
     color: #4ade80;
+    background: rgba(74, 222, 128, 0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 0 15px rgba(74, 222, 128, 0.2);
+    animation: glow 2s ease-in-out infinite;
 }
 
 #server-status.offline {
     color: #ef4444;
+    background: rgba(239, 68, 68, 0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    position: relative;
+    box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+}
+
+@keyframes glow {
+    0% {
+        box-shadow: 0 0 15px rgba(74, 222, 128, 0.2);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(74, 222, 128, 0.4);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(74, 222, 128, 0.2);
+    }
+}
+
+#server-status.online::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: #4ade80;
+    border-radius: 50%;
+    margin-right: 8px;
+    box-shadow: 0 0 8px rgba(74, 222, 128, 0.5);
+    animation: pulse 2s infinite;
+}
+
+#server-status.offline::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: #ef4444;
+    border-radius: 50%;
+    margin-right: 8px;
 }
 
 /* Styling untuk daftar pemain */
@@ -142,76 +208,64 @@ p {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 12px;
 }
 
 .total-players {
-    color: #4ade80;
-    font-size: 1.2em;
     background: rgba(74, 222, 128, 0.1);
-    padding: 5px 15px;
+    color: #4ade80;
+    font-size: 0.9em;
+    padding: 6px 12px;
     border-radius: 20px;
     transition: all 0.3s ease;
 }
 
-.total-players:hover {
-    background: rgba(74, 222, 128, 0.2);
-    transform: scale(1.05);
+.offline-players .total-players {
+    background: rgba(239, 68, 68, 0.1);
+    color: #ef4444;
 }
 
-.players-list {
+.players-list, .offline-players .players-list {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-    gap: 15px;
-    max-height: 500px;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 8px;
+    max-height: 300px;
     overflow-y: auto;
-    padding-right: 10px;
+    padding-right: 8px;
 }
 
 .player-card {
     background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 15px;
+    border-radius: 10px;
+    padding: 10px;
     display: flex;
     align-items: center;
-    gap: 15px;
+    gap: 10px;
     transition: all 0.3s ease;
     border: 1px solid transparent;
-}
-
-.player-card:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.1);
-    transform: translateX(5px);
+    margin-bottom: 8px;
 }
 
 .player-avatar {
-    width: 48px;
-    height: 48px;
-    border-radius: 8px;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
     transition: transform 0.3s ease;
 }
 
-.player-card:hover .player-avatar {
-    transform: scale(1.1) rotate(5deg);
-}
-
 .player-info {
-    flex-grow: 1;
+    flex: 1;
 }
 
 .player-name {
-    color: #ffffff;
-    font-size: 1.1em;
-    margin-bottom: 5px;
+    color: #fff;
+    font-size: 0.95em;
+    margin-bottom: 2px;
 }
 
 .player-seen {
     color: #4ade80;
-    font-size: 0.9em;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    font-size: 0.8em;
 }
 
 .player-seen::after {
@@ -279,9 +333,9 @@ p {
         gap: 15px;
     }
 
-    .players-list {
+    .players-list, .offline-players .players-list {
         grid-template-columns: 1fr;
-        padding-right: 5px;
+        max-height: 250px;
     }
 
     h1 {
@@ -301,15 +355,20 @@ p {
     }
 
     .player-card {
-        padding: 12px;
+        padding: 8px;
     }
 
-    .total-players {
-        font-size: 1em;
+    .player-avatar {
+        width: 28px;
+        height: 28px;
     }
 
-    .address-item {
-        padding: 12px 15px;
+    .player-name {
+        font-size: 0.9em;
+    }
+
+    .last-seen {
+        font-size: 0.7em;
     }
 
     /* Tambahan untuk sentuhan aktif di mobile */
@@ -323,18 +382,26 @@ p {
 
 .offline-players .player-seen {
     color: #9ca3af;
+    font-size: 0.8em;
 }
 
 .offline-players .player-seen::after {
-    background-color: #9ca3af;
+    content: '';
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    background-color: #ef4444;
+    border-radius: 50%;
+    margin-left: 6px;
     box-shadow: none;
     animation: none;
 }
 
 .last-seen {
     color: #9ca3af;
-    font-size: 0.8em;
+    font-size: 0.7em;
     margin-top: 2px;
+    line-height: 1.2;
 }
 
 .server-address {
@@ -465,4 +532,29 @@ p {
 .address-item:active {
     transform: scale(0.98);
     background: rgba(0, 0, 0, 0.3);
+}
+
+.players p {
+    color: #ffffff;
+    font-size: 1.1em;
+    background: rgba(114, 137, 218, 0.1);
+    padding: 8px 16px;
+    border-radius: 20px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 0 15px rgba(114, 137, 218, 0.1);
+}
+
+.players p::before {
+    content: '';
+    display: block;
+    width: 8px;
+    height: 8px;
+    background-color: #7289da;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(114, 137, 218, 0.5);
+    animation: pulse 2s infinite;
 } 

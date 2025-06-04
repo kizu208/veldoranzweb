@@ -118,6 +118,33 @@ async function updatePlayerData(playerName, isOnline) {
     }
 }
 
+// Fungsi untuk memperbarui daftar pemain offline
+async function updateOfflinePlayersList() {
+    try {
+        const offlinePlayers = await getOfflinePlayers();
+        const offlinePlayersFragment = document.createDocumentFragment();
+        
+        // Update total pemain offline
+        totalOfflinePlayers.textContent = offlinePlayers.length;
+        
+        // Bersihkan daftar sebelum menambahkan yang baru
+        offlinePlayersList.innerHTML = '';
+        
+        // Tambahkan setiap pemain offline ke dalam daftar
+        offlinePlayers.forEach(player => {
+            if (player.name && player.name !== 'Unknown') {
+                const playerCard = createPlayerCard(player, false);
+                playerCard.setAttribute('data-player', player.name);
+                offlinePlayersFragment.appendChild(playerCard);
+            }
+        });
+        
+        offlinePlayersList.appendChild(offlinePlayersFragment);
+    } catch (error) {
+        console.error('Error updating offline players list:', error);
+    }
+}
+
 // Fungsi untuk memperbarui status server
 async function updateServerStatus() {
     try {
@@ -163,10 +190,8 @@ async function updateServerStatus() {
                                 newPlayerCards.appendChild(playerCard);
                             }
                             
-                            // Update hanya jika status berubah
-                            if (!currentOnlineNames.includes(playerName)) {
-                                await updatePlayerData(playerName, true);
-                            }
+                            // Update status pemain di database
+                            await updatePlayerData(playerName, true);
                         }
                     });
                     await Promise.all(updatePromises);
@@ -178,108 +203,45 @@ async function updateServerStatus() {
                     const playerName = card.getAttribute('data-player');
                     if (!onlinePlayersList.includes(playerName)) {
                         card.remove();
+                        updatePlayerData(playerName, false);
                     }
                 });
 
                 // Tambahkan kartu pemain baru
                 playersList.appendChild(newPlayerCards);
 
-                // Set pemain yang tidak ada di list sebagai offline
-                const offlinePromises = currentOnlineNames
-                    .filter(name => !onlinePlayersList.includes(name))
-                    .map(name => updatePlayerData(name, false));
-                await Promise.all(offlinePromises);
+                // Update daftar pemain offline
+                await updateOfflinePlayersList();
             }
         } else {
-            // Server offline tapi bukan error
+            // Server offline
             serverStatus.textContent = 'Offline';
             serverStatus.className = 'offline';
             onlinePlayers.textContent = '0';
             maxPlayers.textContent = '0';
             totalPlayers.textContent = '0';
+            playersList.innerHTML = '';
             
-            // Jangan langsung kosongkan, tapi fade out
-            const existingCards = playersList.querySelectorAll('.player-card');
-            existingCards.forEach(card => card.remove());
-            playersList.innerHTML = '<p>Server sedang offline</p>';
-            
-            // Set semua pemain sebagai offline secara parallel
+            // Set semua pemain sebagai offline
             const { data: onlinePlayers } = await supabaseClient
                 .from('players')
                 .select('name')
                 .eq('is_online', true);
             
-            if (onlinePlayers && onlinePlayers.length > 0) {
-                const offlinePromises = onlinePlayers.map(player => 
+            if (onlinePlayers) {
+                const updatePromises = onlinePlayers.map(player => 
                     updatePlayerData(player.name, false)
                 );
-                await Promise.all(offlinePromises);
+                await Promise.all(updatePromises);
             }
+            
+            // Update daftar pemain offline
+            await updateOfflinePlayersList();
         }
-
     } catch (error) {
-        console.error('Error:', error);
-        // Tetap tampilkan sebagai offline, bukan error
-        serverStatus.textContent = 'Offline';
-        serverStatus.className = 'offline';
-        onlinePlayers.textContent = '0';
-        maxPlayers.textContent = '0';
-        totalPlayers.textContent = '0';
-        
-        // Jangan langsung kosongkan
-        const existingCards = playersList.querySelectorAll('.player-card');
-        existingCards.forEach(card => card.remove());
-        playersList.innerHTML = '<p>Server sedang offline</p>';
-    } finally {
-        // Update alamat server
-        serverIp.textContent = SERVER_ADDRESS;
-
-        // Update daftar pemain offline (selalu dijalankan)
-        try {
-            const offlinePlayers = await getOfflinePlayers();
-            
-            // Perbarui total tanpa mengosongkan list
-            totalOfflinePlayers.textContent = offlinePlayers.length;
-            
-            // Bandingkan dengan pemain offline yang sudah ditampilkan
-            const currentOfflineCards = offlinePlayersList.querySelectorAll('.player-card');
-            const currentOfflineNames = Array.from(currentOfflineCards).map(card => 
-                card.getAttribute('data-player')
-            );
-            
-            // Tambahkan pemain offline baru
-            if (offlinePlayers && offlinePlayers.length > 0) {
-                const newOfflineCards = document.createDocumentFragment();
-                
-                offlinePlayers.forEach(player => {
-                    if (!currentOfflineNames.includes(player.name)) {
-                        const playerCard = createPlayerCard(player, false);
-                        playerCard.setAttribute('data-player', player.name);
-                        newOfflineCards.appendChild(playerCard);
-                    }
-                });
-                
-                // Hapus pemain yang tidak ada di daftar offline
-                currentOfflineCards.forEach(card => {
-                    const playerName = card.getAttribute('data-player');
-                    if (!offlinePlayers.some(p => p.name === playerName)) {
-                        card.remove();
-                    }
-                });
-                
-                // Tambahkan kartu baru jika ada
-                if (newOfflineCards.children.length > 0) {
-                    offlinePlayersList.appendChild(newOfflineCards);
-                }
-            } else if (offlinePlayersList.children.length === 0) {
-                offlinePlayersList.innerHTML = '<p>Belum ada riwayat pemain</p>';
-            }
-        } catch (error) {
-            console.error('Error fetching offline players:', error);
-            if (offlinePlayersList.children.length === 0) {
-                offlinePlayersList.innerHTML = '<p>Belum ada riwayat pemain</p>';
-            }
-        }
+        console.error('Error updating server status:', error);
+        serverStatus.textContent = 'Error';
+        serverStatus.className = 'error';
     }
 }
 
@@ -315,10 +277,9 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Tunggu sampai dokumen selesai dimuat
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('Document loaded, initializing...');
-    // Perbarui status setiap 2 detik
-    updateServerStatus();
-    setInterval(updateServerStatus, 2000); // Diubah dari 5000 (5 detik) menjadi 2000 (2 detik)
+// Inisialisasi dan interval update
+document.addEventListener('DOMContentLoaded', async function() {
+    await updateServerStatus();
+    // Update setiap 30 detik
+    setInterval(updateServerStatus, 30000);
 }); 
