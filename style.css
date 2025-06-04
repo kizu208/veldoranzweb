@@ -95,6 +95,11 @@ body {
     }
 }
 
+@font-face {
+    font-family: 'Minecraft';
+    src: url('fonts/minecraft.ttf') format('truetype');
+}
+
 h1 {
     color: #ffffff;
     text-align: center;
@@ -105,6 +110,7 @@ h1 {
     display: inline-block;
     left: 50%;
     transform: translateX(-50%);
+    font-family: 'Minecraft', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 h1::after {
@@ -155,6 +161,7 @@ p {
     position: relative;
     box-shadow: 0 0 15px rgba(74, 222, 128, 0.2);
     animation: glow 2s ease-in-out infinite;
+    font-family: 'Minecraft', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 #server-status.offline {
@@ -167,6 +174,7 @@ p {
     align-items: center;
     position: relative;
     box-shadow: 0 0 15px rgba(239, 68, 68, 0.2);
+    font-family: 'Minecraft', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 @keyframes glow {
@@ -438,15 +446,17 @@ p {
     font-weight: bold;
     display: block;
     margin-bottom: 5px;
+    font-family: 'Minecraft', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .address-value {
     margin: 5px 0;
-    font-family: monospace;
+    font-family: 'Minecraft', monospace;
     font-size: 1.3em;
     color: #fff;
     font-weight: 500;
     transition: all 0.3s ease;
+    letter-spacing: 1px;
 }
 
 .address-item:hover .address-value {
@@ -546,6 +556,7 @@ p {
     font-weight: 600;
     transition: all 0.3s ease;
     box-shadow: 0 0 15px rgba(114, 137, 218, 0.1);
+    font-family: 'Minecraft', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .players p::before {
