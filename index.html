@@ -62,22 +62,56 @@
         </div>
 
         <div class="players-card">
-            <div class="players-header">
-                <h2>Online</h2>
-                <span class="total-players">Total: <span id="total-players">0</span></span>
+            <div class="players-section online-section">
+                <div class="players-header">
+                    <h2>Online</h2>
+                    <span class="total-players">Total: <span id="total-players">0</span></span>
+                </div>
+                <div class="players-list" id="players-list">
+                    <!-- Daftar pemain online akan ditambahkan di sini oleh JavaScript -->
+                </div>
             </div>
-            <div class="players-list" id="players-list">
-                <!-- Daftar pemain online akan ditambahkan di sini oleh JavaScript -->
+
+            <div class="section-divider"></div>
+
+            <div class="players-section offline-section">
+                <div class="players-header">
+                    <h2>Riwayat Pemain</h2>
+                    <span class="total-players">Total: <span id="total-offline-players">0</span></span>
+                </div>
+                <div class="players-list" id="offline-players-list">
+                    <!-- Daftar pemain offline akan ditambahkan di sini oleh JavaScript -->
+                </div>
             </div>
         </div>
 
-        <div class="players-card offline-players">
-            <div class="players-header">
-                <h2>Riwayat Pemain</h2>
-                <span class="total-players">Total: <span id="total-offline-players">0</span></span>
-            </div>
-            <div class="players-list" id="offline-players-list">
-                <!-- Daftar pemain offline akan ditambahkan di sini oleh JavaScript -->
+        <div class="server-card vote-card">
+            <div class="vote-content">
+                <div class="vote-icon">
+                    <i class="fas fa-star"></i>
+                </div>
+                <h2>Vote Untuk Server Kami</h2>
+                <p class="vote-description">Dukung perkembangan server VeldoranzSMP dengan memberikan vote! Setiap vote yang Anda berikan sangat berarti bagi komunitas kami dan membantu server untuk tumbuh lebih besar.</p>
+                
+                <div class="vote-features">
+                    <div class="vote-feature">
+                        <i class="fas fa-gift"></i>
+                        <span>Dapatkan hadiah spesial setiap vote</span>
+                    </div>
+                    <div class="vote-feature">
+                        <i class="fas fa-users"></i>
+                        <span>Bantu server menjangkau lebih banyak pemain</span>
+                    </div>
+                    <div class="vote-feature">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Tingkatkan peringkat server</span>
+                    </div>
+                </div>
+
+                <a href="https://minecraft-mp.com/server/343993/vote/" target="_blank" class="vote-button">
+                    <i class="fas fa-vote-yea"></i>
+                    Vote Sekarang
+                </a>
             </div>
         </div>
 
