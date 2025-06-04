@@ -6,21 +6,45 @@
     <title>VeldoranzSMP</title>
     <link rel="icon" href="https://veldoranzweb.vercel.app/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <div class="container">
         <div class="server-card">
             <h1>VeldoranzSMP Status</h1>
             <div class="server-info">
-                <div class="status">
-                    <h2>Status Server:</h2>
-                    <p id="server-status">Memuat...</p>
+                <div class="info-card online-players">
+                    <div class="info-card-label">
+                        <i class="fas fa-users"></i>
+                        Online Players
+                    </div>
+                    <div class="info-card-value">
+                        <span id="online-players">0</span>/<span id="max-players">0</span>
+                    </div>
                 </div>
-                <div class="players">
-                    <h2>Pemain Online:</h2>
-                    <p><span id="online-players">0</span> / <span id="max-players">0</span></p>
+                <div class="info-card server-status">
+                    <div class="info-card-label">
+                        <i class="fas fa-server"></i>
+                        Server Status
+                    </div>
+                    <div class="info-card-value" id="server-status">Memuat...</div>
+                </div>
+                <div class="info-card uptime">
+                    <div class="info-card-label">
+                        <i class="fas fa-clock"></i>
+                        Uptime
+                    </div>
+                    <div class="info-card-value">100%</div>
+                </div>
+                <div class="info-card version">
+                    <div class="info-card-label">
+                        <i class="fas fa-code-branch"></i>
+                        Version
+                    </div>
+                    <div class="info-card-value">1.20-1.21.4</div>
                 </div>
             </div>
+
             <div class="server-address">
                 <h2>Alamat Server</h2>
                 <div class="address-container">

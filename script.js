@@ -154,8 +154,9 @@ async function updateServerStatus() {
         
         // Update status server
         if (data.online) {
-            serverStatus.textContent = 'Online';
-            serverStatus.className = 'online';
+            const serverStatusValue = document.querySelector('.info-card.server-status .info-card-value');
+            serverStatusValue.textContent = 'Online';
+            serverStatusValue.className = 'info-card-value online';
             
             // Update jumlah pemain
             if (data.players) {
@@ -214,9 +215,9 @@ async function updateServerStatus() {
                 await updateOfflinePlayersList();
             }
         } else {
-            // Server offline
-            serverStatus.textContent = 'Offline';
-            serverStatus.className = 'offline';
+            const serverStatusValue = document.querySelector('.info-card.server-status .info-card-value');
+            serverStatusValue.textContent = 'Offline';
+            serverStatusValue.className = 'info-card-value offline';
             onlinePlayers.textContent = '0';
             maxPlayers.textContent = '0';
             totalPlayers.textContent = '0';
@@ -240,8 +241,9 @@ async function updateServerStatus() {
         }
     } catch (error) {
         console.error('Error updating server status:', error);
-        serverStatus.textContent = 'Error';
-        serverStatus.className = 'error';
+        const serverStatusValue = document.querySelector('.info-card.server-status .info-card-value');
+        serverStatusValue.textContent = 'Error';
+        serverStatusValue.className = 'info-card-value error';
     }
 }
 
