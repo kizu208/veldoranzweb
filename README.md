@@ -50,15 +50,6 @@ Untuk mengubah konfigurasi server:
 2. Sesuaikan link Discord dan WhatsApp di bagian komunitas
 3. Update versi Minecraft yang didukung
 
-## 🤝 Berkontribusi
-
-Kami sangat terbuka dengan kontribusi! Jika Anda ingin berkontribusi:
-1. Fork repository ini
-2. Buat branch baru (`git checkout -b fitur-baru`)
-3. Commit perubahan Anda (`git commit -m 'Menambah fitur baru'`)
-4. Push ke branch (`git push origin fitur-baru`)
-5. Buat Pull Request
-
 ## 📞 Kontak
 
 - Discord Server: [Bergabung dengan Discord](https://discord.gg/37kQQYFMPR)
