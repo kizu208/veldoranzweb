@@ -897,4 +897,119 @@ p {
     animation: starRotate 4s infinite ease-in-out;
     color: #7289da;
     text-shadow: 0 0 15px rgba(114, 137, 218, 0.5);
+}
+
+/* Contact Card Styles */
+.contact-card {
+    overflow: hidden;
+    position: relative;
+}
+
+.contact-content {
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.contact-icon {
+    font-size: 2.5em;
+    color: #7289da;
+    margin-bottom: 15px;
+}
+
+.contact-description {
+    color: #ffffff;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin: 20px auto;
+    max-width: 600px;
+    opacity: 0.9;
+}
+
+.contact-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 25px;
+}
+
+.contact-button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.discord-button {
+    background: #7289da;
+    color: white;
+}
+
+.discord-button:hover {
+    background: #5b73c7;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(114, 137, 218, 0.4);
+}
+
+.whatsapp-button {
+    background: #25D366;
+    color: white;
+}
+
+.whatsapp-button:hover {
+    background: #20bd5a;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(37, 211, 102, 0.4);
+}
+
+/* Responsive styles for contact card */
+@media (max-width: 768px) {
+    .contact-buttons {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .contact-button {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .contact-description {
+        font-size: 1em;
+        margin: 15px auto;
+    }
+}
+
+@keyframes chatBounce {
+    0% {
+        transform: scale(1) rotate(0deg);
+    }
+    25% {
+        transform: scale(1.1) rotate(-5deg);
+    }
+    50% {
+        transform: scale(1) rotate(0deg);
+    }
+    75% {
+        transform: scale(1.1) rotate(5deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+    }
+}
+
+.contact-icon i {
+    display: inline-block;
+    animation: chatBounce 3s infinite ease-in-out;
+    color: #7289da;
+    text-shadow: 0 0 15px rgba(114, 137, 218, 0.5);
 } 
