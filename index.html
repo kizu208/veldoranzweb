@@ -11,7 +11,7 @@
 <body>
     <div class="container">
         <div class="server-card">
-            <h1>VeldoranzSMP Status</h1>
+            <h1>Welcome to VeldoranzSMP</h1>
             <div class="server-info">
                 <div class="info-card online-players">
                     <div class="info-card-label">
@@ -34,7 +34,7 @@
                         <i class="fas fa-clock"></i>
                         Uptime
                     </div>
-                    <div class="info-card-value">100%</div>
+                    <div class="info-card-value">90%</div>
                 </div>
                 <div class="info-card version">
                     <div class="info-card-label">
@@ -46,7 +46,7 @@
             </div>
 
             <div class="server-address">
-                <h2>Alamat Server</h2>
+                <h2>IP Address:</h2>
                 <div class="address-container">
                     <div class="address-item">
                         <span class="address-label">Java Edition</span>
@@ -81,6 +81,205 @@
                 </div>
                 <div class="players-list" id="offline-players-list">
                     <!-- Daftar pemain offline akan ditambahkan di sini oleh JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <div class="server-card store-card">
+            <div class="store-content">
+                <div class="store-icon">
+                    <i class="fas fa-store"></i>
+                </div>
+                <h2>Store VeldoranzSMP</h2>
+                <p class="store-description">Ayo beli rank untuk membantu server ini dan dapatkan berbagai fitur eksklusif serta item-item spesial yang menunggu!</p>
+                
+                <button class="store-button" onclick="openStorePopup()">
+                    <i class="fas fa-shopping-cart"></i>
+                    Lihat Daftar Rank
+                </button>
+            </div>
+        </div>
+
+        <!-- Store Popup -->
+        <div id="storePopup" class="popup-overlay">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <h2>Daftar Rank</h2>
+                    <button class="close-popup" onclick="closeStorePopup()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="rank-list">
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">NERA</span>
+                            <span class="rank-price">Rp 10.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyRank('NERA', '10.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">DAUCUS</span>
+                            <span class="rank-price">Rp 20.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyRank('DAUCUS', '20.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">DOMESTICUS</span>
+                            <span class="rank-price">Rp 30.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyRank('DOMESTICUS', '30.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">AVES</span>
+                            <span class="rank-price">Rp 50.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyRank('AVES', '50.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">EDORLANS</span>
+                            <span class="rank-price">Rp 75.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyRank('EDORLANS', '75.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">MAGIVERA</span>
+                            <span class="rank-price">Rp 120.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyRank('MAGIVERA', '120.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">SILVESTRIS</span>
+                            <span class="rank-price">Rp 150.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyRank('SILVESTRIS', '150.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">TROPS</span>
+                            <span class="rank-price">Rp 195.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyRank('TROPS', '195.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">RHINOCEROS</span>
+                            <span class="rank-price">Rp 230.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyRank('RHINOCEROS', '230.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">HYSTRIX</span>
+                            <span class="rank-price">Rp 280.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyRank('HYSTRIX', '280.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">CHELONIA</span>
+                            <span class="rank-price">Rp 320.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyRank('CHELONIA', '320.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">ARDEA</span>
+                            <span class="rank-price">Rp 360.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyRank('ARDEA', '360.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">STERNA</span>
+                            <span class="rank-price">Rp 380.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyRank('STERNA', '380.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">RYTHECROS</span>
+                            <span class="rank-price">Rp 410.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyRank('RYTHECROS', '410.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">STACHYRIS</span>
+                            <span class="rank-price">Rp 440.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyRank('STACHYRIS', '440.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">HYDRONIS</span>
+                            <span class="rank-price">Rp 470.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyRank('HYDRONIS', '470.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">ALCEDO</span>
+                            <span class="rank-price">Rp 520.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyRank('ALCEDO', '520.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>

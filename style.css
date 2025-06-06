@@ -37,6 +37,8 @@ body {
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
 }
 
 .container {
@@ -46,6 +48,7 @@ body {
     opacity: 0;
     animation: fadeInContent 0.6s ease-out forwards;
     margin: 40px auto;
+    border-radius: 20px;
 }
 
 @keyframes fadeInContent {
@@ -59,10 +62,10 @@ body {
     }
 }
 
-.server-card, .players-card {
+.server-card, .players-card, .vote-card, .contact-card, .store-card {
     background: rgba(255, 255, 255, 0.1);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(15px);
+    backdrop-filter: blur(15px);
     border-radius: 15px;
     padding: 25px;
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
@@ -72,6 +75,7 @@ body {
     max-width: 900px;
     margin-left: auto;
     margin-right: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 @media (hover: hover) {
@@ -1012,4 +1016,270 @@ p {
     animation: chatBounce 3s infinite ease-in-out;
     color: #7289da;
     text-shadow: 0 0 15px rgba(114, 137, 218, 0.5);
+}
+
+/* Store Card Styles */
+.store-card {
+    overflow: hidden;
+    position: relative;
+}
+
+.store-content {
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.store-icon {
+    font-size: 2.5em;
+    color: #7289da;
+    margin-bottom: 15px;
+}
+
+.store-icon i {
+    display: inline-block;
+    animation: storeFloat 3s ease-in-out infinite;
+    color: #7289da;
+    text-shadow: 0 0 15px rgba(114, 137, 218, 0.5);
+}
+
+.store-description {
+    color: #ffffff;
+    font-size: 1.1em;
+    line-height: 1.6;
+    margin: 20px auto;
+    max-width: 600px;
+    opacity: 0.9;
+}
+
+.store-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 25px;
+    border-radius: 10px;
+    font-size: 1.1em;
+    font-weight: 600;
+    background: #7289da;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.store-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(114, 137, 218, 0.4);
+    background: #5b73c7;
+}
+
+/* Popup Styles */
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(26, 31, 44, 0.85);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
+    z-index: 1000;
+    opacity: 0;
+    transition: all 0.3s ease;
+}
+
+.popup-overlay.active {
+    opacity: 1;
+}
+
+.popup-content {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.95);
+    background: rgba(26, 31, 44, 0.95);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 15px;
+    padding: 25px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    margin-top: -50px;
+}
+
+.popup-overlay.active .popup-content {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 1;
+}
+
+.popup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    margin: -25px -25px 20px -25px;
+    padding: 20px 25px;
+    border-radius: 15px 15px 0 0;
+}
+
+.popup-header h2 {
+    margin: 0;
+    color: #ffffff;
+    font-size: 1.5em;
+    font-weight: 600;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.close-popup {
+    background: none;
+    border: none;
+    color: #ffffff;
+    font-size: 1.5em;
+    cursor: pointer;
+    padding: 5px;
+    transition: all 0.3s ease;
+    opacity: 0.7;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.close-popup:hover {
+    opacity: 1;
+    background: rgba(255, 255, 255, 0.1);
+    transform: rotate(90deg);
+}
+
+.rank-list {
+    max-height: 400px;
+    overflow-y: auto;
+    padding-right: 10px;
+    margin: 0 -10px 0 0;
+}
+
+.rank-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+    margin-bottom: 10px;
+    transition: all 0.3s ease;
+}
+
+.rank-item:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateX(5px);
+}
+
+.rank-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1;
+    margin-right: 15px;
+}
+
+.rank-name {
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 1.1em;
+}
+
+.rank-price {
+    color: #4ade80;
+    font-weight: 600;
+}
+
+.buy-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px;
+    border-radius: 8px;
+    font-size: 0.9em;
+    font-weight: 600;
+    background: #7289da;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.buy-button:hover {
+    background: #5b73c7;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(114, 137, 218, 0.4);
+}
+
+/* Scrollbar Styles for Rank List */
+.rank-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.rank-list::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+}
+
+.rank-list::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.rank-list::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .popup-content {
+        width: 95%;
+        padding: 20px;
+        max-height: 90vh;
+        overflow-y: auto;
+    }
+
+    .rank-list {
+        max-height: none;
+    }
+
+    .rank-item {
+        flex-direction: column;
+        gap: 15px;
+        text-align: center;
+    }
+
+    .rank-info {
+        flex-direction: column;
+        gap: 10px;
+        margin-right: 0;
+    }
+
+    .buy-button {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@keyframes storeFloat {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
 } 

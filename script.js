@@ -284,4 +284,58 @@ document.addEventListener('DOMContentLoaded', async function() {
     await updateServerStatus();
     // Update setiap 30 detik
     setInterval(updateServerStatus, 30000);
+});
+
+// Store Popup Functions
+function openStorePopup() {
+    const popup = document.getElementById('storePopup');
+    const popupContent = popup.querySelector('.popup-content');
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+    
+    // Tampilkan popup
+    popup.style.display = 'block';
+    // Trigger reflow
+    void popup.offsetWidth;
+    // Tambahkan class active untuk animasi
+    popup.classList.add('active');
+    
+    // Atur posisi popup relatif terhadap scroll
+    const popupHeight = popupContent.offsetHeight;
+    const centerPosition = scrollY + (windowHeight / 2);
+    const topPosition = centerPosition - (popupHeight / 2) - 100;
+    
+    // Pastikan popup tidak keluar dari area yang terlihat
+    const minTop = scrollY + 20;
+    const maxTop = scrollY + windowHeight - popupHeight - 20;
+    
+    const finalTop = Math.min(Math.max(topPosition, minTop), maxTop);
+    
+    popupContent.style.top = `${finalTop}px`;
+    popupContent.style.transform = 'translateX(-50%)';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeStorePopup() {
+    const popup = document.getElementById('storePopup');
+    popup.classList.remove('active');
+    
+    // Tunggu animasi selesai sebelum menyembunyikan popup
+    setTimeout(() => {
+        popup.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }, 300); // Sesuaikan dengan durasi transisi di CSS
+}
+
+function buyRank(rankName, price) {
+    const message = `min min, beli rank dong min yang ${rankName}`;
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/6288225247363?text=${encodedMessage}`, '_blank');
+}
+
+// Close popup when clicking outside
+document.getElementById('storePopup').addEventListener('click', function(e) {
+    if (e.target === this) {
+        closeStorePopup();
+    }
 }); 
