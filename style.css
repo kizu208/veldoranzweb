@@ -1331,4 +1331,128 @@ p {
     100% {
         transform: translateY(0);
     }
+}
+
+/* Partner Card Styles */
+.partner-card {
+    overflow: hidden;
+    position: relative;
+}
+
+.partner-content {
+    text-align: center;
+    padding: 20px;
+    position: relative;
+    z-index: 1;
+}
+
+.partner-icon {
+    font-size: 2.5em;
+    color: #7289da;
+    margin-bottom: 15px;
+}
+
+.partner-icon i {
+    display: inline-block;
+    animation: handshakeAnimation 3s infinite ease-in-out;
+    color: #7289da;
+    text-shadow: 0 0 15px rgba(114, 137, 218, 0.5);
+}
+
+.partners-container {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.partner-item {
+    flex: 1;
+    min-width: 280px;
+    max-width: 400px;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 12px;
+    padding: 20px;
+    transition: all 0.3s ease;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.partner-item:hover {
+    transform: translateY(-5px);
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(255, 255, 255, 0.2);
+}
+
+.partner-info h3 {
+    color: #ffffff;
+    font-size: 1.4em;
+    margin-bottom: 10px;
+}
+
+.partner-description {
+    color: #ffffff;
+    font-size: 0.9em;
+    line-height: 1.6;
+    margin: 15px 0;
+    opacity: 0.9;
+}
+
+.partner-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1em;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+}
+
+.partner-button:hover {
+    transform: translateY(-2px);
+}
+
+@keyframes handshakeAnimation {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(15deg);
+    }
+    75% {
+        transform: rotate(-15deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* Responsive styles for partner card */
+@media (max-width: 768px) {
+    .partners-container {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .partner-item {
+        width: 100%;
+        max-width: 100%;
+    }
+}
+
+.credit-text {
+    text-align: center;
+    color: #9ca3af;
+    font-size: 0.85em;
+    margin-top: 10px;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+}
+
+.credit-text:hover {
+    color: #7289da;
+    opacity: 1;
 } 
