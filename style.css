@@ -1244,31 +1244,80 @@ p {
 /* Mobile Responsive */
 @media (max-width: 768px) {
     .popup-content {
-        width: 95%;
-        padding: 20px;
-        max-height: 90vh;
+        width: 85%;
+        padding: 15px;
+        max-height: 80vh;
         overflow-y: auto;
+        top: 50%;
+        margin-top: 0;
+    }
+
+    .popup-header {
+        padding: 15px;
+        margin: -15px -15px 15px -15px;
+    }
+
+    .popup-header h2 {
+        font-size: 1.3em;
     }
 
     .rank-list {
-        max-height: none;
+        max-height: 60vh;
+        padding-right: 5px;
     }
 
     .rank-item {
-        flex-direction: column;
-        gap: 15px;
-        text-align: center;
+        padding: 12px;
+        margin-bottom: 8px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        gap: 10px;
     }
 
     .rank-info {
-        flex-direction: column;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
         gap: 10px;
         margin-right: 0;
     }
 
+    .rank-name {
+        font-size: 0.95em;
+    }
+
+    .rank-price {
+        font-size: 0.9em;
+        text-align: right;
+    }
+
     .buy-button {
-        width: 100%;
-        justify-content: center;
+        padding: 6px 12px;
+        font-size: 0.85em;
+    }
+}
+
+@media (max-width: 480px) {
+    .popup-content {
+        width: 90%;
+        padding: 12px;
+        margin-top: 0;
+        top: 50%;
+        transform: translate(-50%, -50%) scale(0.95);
+    }
+
+    .popup-header {
+        padding: 12px;
+        margin: -12px -12px 12px -12px;
+    }
+
+    .rank-list {
+        max-height: 70vh;
+    }
+
+    .rank-item {
+        padding: 10px;
     }
 }
 
