@@ -91,12 +91,22 @@
                     <i class="fas fa-store"></i>
                 </div>
                 <h2>Store VeldoranzSMP</h2>
-                <p class="store-description">Ayo beli rank untuk membantu server ini dan dapatkan berbagai fitur eksklusif serta item-item spesial yang menunggu!</p>
+                <p class="store-description">Jual rank, weapon contract dan skill untuk meningkatkan pengalaman bermain Anda di server!</p>
                 
-                <button class="store-button" onclick="openStorePopup()">
-                    <i class="fas fa-shopping-cart"></i>
-                    Lihat Daftar Rank
-                </button>
+                <div class="store-buttons">
+                    <button class="store-button" onclick="openStorePopup()">
+                        <i class="fas fa-crown"></i>
+                        Daftar Rank
+                    </button>
+                    <button class="store-button" onclick="openWeaponPopup()">
+                        <i class="fas fa-khanda"></i>
+                        Weapon Contract
+                    </button>
+                    <button class="store-button" onclick="openSkillPopup()">
+                        <i class="fas fa-bolt"></i>
+                        Skill Contract
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -276,6 +286,124 @@
                             <span class="rank-price">Rp 520.000</span>
                         </div>
                         <button class="buy-button" onclick="buyRank('ALCEDO', '520.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Weapon Popup -->
+        <div id="weaponPopup" class="popup-overlay">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <h2>Daftar Weapon Contract</h2>
+                    <button class="close-popup" onclick="closeWeaponPopup()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="rank-list">
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">SCHATE [40%]</span>
+                            <span class="rank-price">Rp 15.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyWeapon('SCHATE', '15.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">WISMOUN [35%]</span>
+                            <span class="rank-price">Rp 20.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyWeapon('WISMOUN', '20.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">SCROW [30%]</span>
+                            <span class="rank-price">Rp 30.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyWeapon('SCROW', '30.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">ARCHET [25%]</span>
+                            <span class="rank-price">Rp 40.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyWeapon('ARCHET', '40.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">NERTHAN [20%]</span>
+                            <span class="rank-price">Rp 50.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyWeapon('NERTHAN', '50.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">ARTHERA [10%]</span>
+                            <span class="rank-price">Rp 60.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buyWeapon('ARTHERA', '60.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Skill Popup -->
+        <div id="skillPopup" class="popup-overlay">
+            <div class="popup-content">
+                <div class="popup-header">
+                    <h2>Daftar Skill Contract</h2>
+                    <button class="close-popup" onclick="closeSkillPopup()">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="rank-list">
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">ONE SKILLS MAX</span>
+                            <span class="rank-price">Rp 10.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buySkill('ONE_SKILLS', '10.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">TWO SKILLS MAX</span>
+                            <span class="rank-price">Rp 20.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buySkill('TWO_SKILLS', '20.000')">
+                            <i class="fas fa-shopping-cart"></i>
+                            Beli
+                        </button>
+                    </div>
+                    <div class="rank-item">
+                        <div class="rank-info">
+                            <span class="rank-name">ALL SKILLS MAX</span>
+                            <span class="rank-price">Rp 350.000</span>
+                        </div>
+                        <button class="buy-button" onclick="buySkill('ALL_SKILLS', '350.000')">
                             <i class="fas fa-shopping-cart"></i>
                             Beli
                         </button>

@@ -338,4 +338,109 @@ document.getElementById('storePopup').addEventListener('click', function(e) {
     if (e.target === this) {
         closeStorePopup();
     }
-}); 
+});
+
+function openWeaponPopup() {
+    const popup = document.getElementById('weaponPopup');
+    const popupContent = popup.querySelector('.popup-content');
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+    
+    // Tampilkan popup
+    popup.style.display = 'block';
+    // Trigger reflow
+    void popup.offsetWidth;
+    // Tambahkan class active untuk animasi
+    popup.classList.add('active');
+    
+    // Atur posisi popup relatif terhadap scroll
+    const popupHeight = popupContent.offsetHeight;
+    const centerPosition = scrollY + (windowHeight / 2);
+    const topPosition = centerPosition - (popupHeight / 2) - 100;
+    
+    // Pastikan popup tidak keluar dari area yang terlihat
+    const minTop = scrollY + 20;
+    const maxTop = scrollY + windowHeight - popupHeight - 20;
+    
+    const finalTop = Math.min(Math.max(topPosition, minTop), maxTop);
+    
+    popupContent.style.top = `${finalTop}px`;
+    popupContent.style.transform = 'translateX(-50%)';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeWeaponPopup() {
+    const popup = document.getElementById('weaponPopup');
+    popup.classList.remove('active');
+    
+    // Tunggu animasi selesai sebelum menyembunyikan popup
+    setTimeout(() => {
+        popup.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }, 300);
+}
+
+function openSkillPopup() {
+    const popup = document.getElementById('skillPopup');
+    const popupContent = popup.querySelector('.popup-content');
+    const scrollY = window.scrollY;
+    const windowHeight = window.innerHeight;
+    
+    // Tampilkan popup
+    popup.style.display = 'block';
+    // Trigger reflow
+    void popup.offsetWidth;
+    // Tambahkan class active untuk animasi
+    popup.classList.add('active');
+    
+    // Atur posisi popup relatif terhadap scroll
+    const popupHeight = popupContent.offsetHeight;
+    const centerPosition = scrollY + (windowHeight / 2);
+    const topPosition = centerPosition - (popupHeight / 2) - 100;
+    
+    // Pastikan popup tidak keluar dari area yang terlihat
+    const minTop = scrollY + 20;
+    const maxTop = scrollY + windowHeight - popupHeight - 20;
+    
+    const finalTop = Math.min(Math.max(topPosition, minTop), maxTop);
+    
+    popupContent.style.top = `${finalTop}px`;
+    popupContent.style.transform = 'translateX(-50%)';
+    document.body.style.overflow = 'hidden';
+}
+
+function closeSkillPopup() {
+    const popup = document.getElementById('skillPopup');
+    popup.classList.remove('active');
+    
+    // Tunggu animasi selesai sebelum menyembunyikan popup
+    setTimeout(() => {
+        popup.style.display = 'none';
+        document.body.style.overflow = 'auto';
+    }, 300);
+}
+
+// Close popup when clicking outside
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('weaponPopup').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeWeaponPopup();
+        }
+    });
+
+    document.getElementById('skillPopup').addEventListener('click', function(e) {
+        if (e.target === this) {
+            closeSkillPopup();
+        }
+    });
+});
+
+function buyWeapon(weaponName, price) {
+    const message = `Halo, saya ingin membeli Weapon Contract ${weaponName} seharga Rp ${price}`;
+    window.open(`https://wa.me/6285771624491?text=${encodeURIComponent(message)}`, '_blank');
+}
+
+function buySkill(skillName, price) {
+    const message = `Halo, saya ingin membeli Skill Contract ${skillName} seharga Rp ${price}`;
+    window.open(`https://wa.me/6285771624491?text=${encodeURIComponent(message)}`, '_blank');
+} 

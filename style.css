@@ -1053,13 +1053,21 @@ p {
     opacity: 0.9;
 }
 
+.store-buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
 .store-button {
     display: inline-flex;
     align-items: center;
     gap: 10px;
     padding: 12px 25px;
     border-radius: 10px;
-    font-size: 1.1em;
+    font-size: 1em;
     font-weight: 600;
     background: #7289da;
     color: white;
