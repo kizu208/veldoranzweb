@@ -436,11 +436,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function buyWeapon(weaponName, price) {
-    const message = `Halo, saya ingin membeli Weapon Contract ${weaponName} seharga Rp ${price}`;
-    window.open(`https://wa.me/6285771624491?text=${encodeURIComponent(message)}`, '_blank');
+    const message = `min min, beli weapon dong min yang ${weaponName}`;
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/6288225247363?text=${encodedMessage}`, '_blank');
 }
 
 function buySkill(skillName, price) {
-    const message = `Halo, saya ingin membeli Skill Contract ${skillName} seharga Rp ${price}`;
-    window.open(`https://wa.me/6285771624491?text=${encodeURIComponent(message)}`, '_blank');
+    const message = `min min, beli skill dong min yang ${skillName}`;
+    const encodedMessage = encodeURIComponent(message);
+    window.open(`https://wa.me/6288225247363?text=${encodedMessage}`, '_blank');
 } 
